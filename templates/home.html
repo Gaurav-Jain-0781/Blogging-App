@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home page</title>
+</head>
+<body>
+    {% block content %}
+    <h1>welcome to your blogs.</h1>
+    <h2>posts</h2>
+    <ul>
+        {% for post_id, post in post.items() %}
+        <li> 
+            <a href="{{ url_for('returning_post', post_id=post_id) }}">{{ post['title'] }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('create')}}">create new post</a>
+    {% endblock %}
+</body>
+</html>
