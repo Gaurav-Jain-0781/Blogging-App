@@ -1,0 +1,19 @@
+body {
+    background-color: rgb(65, 14, 122);
+}
+h1 {
+    font-size: 28px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: oblique;
+    font-weight: bold;
+    color: deeppink;
+}
+p {
+    color: lawngreen;
+    font-size: 12px;
+    font-family: sans-serif;
+    font-style: italic;
+}
+img {
+    border: 3px solid black;
+}
