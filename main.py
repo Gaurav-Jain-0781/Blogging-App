@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+import database
 
 app = Flask(__name__)
 
@@ -29,11 +30,13 @@ def create():
         title = request.form.get('Title')
         content = request.form.get('content')
         new_post_id = len(posts_data)
-        posts_data[new_post_id] = {
+        new_post = {
             'post_id': new_post_id,
             'title': title,
             'content': content
         }
+        posts_data[new_post_id] = new_post
+        database.add_blog(posts_data)
         return redirect(url_for('returning_post', post_id=new_post_id))
     return render_template('form.html', message='form for creating post .')
 
