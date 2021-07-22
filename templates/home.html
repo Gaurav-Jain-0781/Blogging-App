@@ -10,7 +10,7 @@
     <h2>posts</h2>
     <ul>
         {% for post_id, post in post.items() %}
-        <li> 
+        <li>
             <a href="{{ url_for('returning_post', post_id=post_id) }}">{{ post['title'] }}</a>
         </li>
         {% endfor %}
