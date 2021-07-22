@@ -1,14 +1,36 @@
 from flask import Flask, render_template, request, redirect, url_for
-import database
 
 app = Flask(__name__)
 
 posts_data = {
-    0: {'post_id': 0,
-        'title': "my first blog",
-        'content': 'hello , world !!'
-        }
+    0: {
+        'post_id': 1,
+        'title': 'my first blog',
+        'content': 'hello , world !!',
+    },
 }
+
+
+def update_post_data():
+    with open('data.txt', 'r') as file:
+        lines = [line.strip().split(',') for line in file.readlines()]
+
+    for line in lines:
+        post_id = len(posts_data)
+        new_post = {
+            'post_id': line[0],
+            'title': line[1],
+            'content': line[2],
+        }
+        posts_data[post_id] = new_post
+
+
+def add_blog(data):
+    post_id = data['post_id']
+    title = data['title']
+    content = data['content']
+    with open('data.txt', 'a') as file:
+        file.write(f'{post_id},{title},{content}\n')
 
 
 @app.route('/')
@@ -36,10 +58,13 @@ def create():
             'content': content
         }
         posts_data[new_post_id] = new_post
-        database.add_blog(posts_data)
+        add_blog(new_post)
         return redirect(url_for('returning_post', post_id=new_post_id))
     return render_template('form.html', message='form for creating post .')
 
 
+update_post_data()
+
 if __name__ == '__main__':
     app.run(debug=True)
+
