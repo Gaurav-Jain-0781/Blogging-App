@@ -1,36 +1,61 @@
 from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
 
 app = Flask(__name__)
 
 posts_data = {
     0: {
         'post_id': 1,
-        'title': 'my first blog',
-        'content': 'hello , world !!',
+        'title': 'My First Blog',
+        'content': 'Hello , world !!',
     },
 }
 
 
-def update_post_data():
-    with open('data.txt', 'r') as file:
-        lines = [line.strip().split(',') for line in file.readlines()]
+def create_blog_table():
+    connection = sqlite3.connect('data.db')
+    cursor = connection.cursor()
 
-    for line in lines:
-        post_id = len(posts_data)
-        new_post = {
-            'post_id': line[0],
-            'title': line[1],
-            'content': line[2],
-        }
-        posts_data[post_id] = new_post
+    cursor.execute('CREATE TABLE IF NOT EXISTS blog (post_id integer, title text, content text)')
+
+    connection.commit()
+    connection.close()
 
 
 def add_blog(data):
     post_id = data['post_id']
-    title = data['title']
+    title = data['title'].capitalize()
     content = data['content']
-    with open('data.txt', 'a') as file:
-        file.write(f'{post_id},{title},{content}\n')
+
+    connection = sqlite3.connect('data.db')
+    cursor = connection.cursor()
+
+    cursor.execute(f'INSERT INTO blog VALUES ("{post_id}", "{title}", "{content}")')
+
+    connection.commit()
+    connection.close()
+
+
+def retrive_data():
+    connection = sqlite3.connect('data.db')
+    cursor = connection.cursor()
+
+    cursor.execute('SELECT post_id, title, content FROM blog')
+    blog = [{'post_id': row[0],
+             'title': row[1],
+             'content': row[2]}
+            for row in cursor.fetchall()]
+
+    connection.close()
+
+    for b in blog:
+        post_id = len(posts_data)
+        new_post = {
+            'post_id': b['post_id'],
+            'title': b['title'],
+            'content': b['content']
+        }
+        posts_data[post_id] = new_post
 
 
 @app.route('/')
@@ -49,7 +74,7 @@ def returning_post(post_id):
 @app.route('/post/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
-        title = request.form.get('Title')
+        title = request.form.get('Title').capitalize()
         content = request.form.get('content')
         new_post_id = len(posts_data)
         new_post = {
@@ -60,11 +85,11 @@ def create():
         posts_data[new_post_id] = new_post
         add_blog(new_post)
         return redirect(url_for('returning_post', post_id=new_post_id))
-    return render_template('form.html', message='form for creating post .')
+    return render_template('form.html', message='Form for Creating Post')
 
 
-update_post_data()
+retrive_data()
 
 if __name__ == '__main__':
+    create_blog_table()
     app.run(debug=True)
-
