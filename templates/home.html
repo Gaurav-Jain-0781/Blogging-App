@@ -3,11 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>home page</title>
+    <style>
+        body {
+        background-color: aqua;
+        }
+    h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-style: oblique;
+        font-weight: bold;
+        color: deeppink;
+        text-align: center;
+    }
+    h2{
+        font-size: 300%;
+        font-variant: small-caps ;
+        font-family: forte;
+        font-weight: bolder;
+        color: rgba(54, 38, 192, 0.856);
+    }
+    li {
+        color: rgb(212, 95, 48);
+        font-size: 12px;
+        font-family: sans-serif;
+        font-style: italic;
+        }
+    a{
+        font-size: 225%;
+        color: crimson;
+        font-family: monospace;
+        font-weight: 500;
+        font-style: italic;
+    }
+    </style>
 </head>
 <body>
     {% block content %}
-    <h1>welcome to your blogs.</h1>
-    <h2>posts</h2>
+    <h1>Welcome to your Blogs.</h1>
+    <h2>Posts</h2>
     <ul>
         {% for post_id, post in post.items() %}
         <li>
@@ -15,6 +47,21 @@
         </li>
         {% endfor %}
     </ul>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+ 
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr color="white" size="3px">
+    <br>
     <a href="{{ url_for('create')}}">create new post</a>
     {% endblock %}
 </body>
