@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>posts</title>
+    <title>updated post</title>
     <style>
         body{
             background-color: slateblue;
         }
         h1{
             color: palegreen;
-            font-size: 50px;
+            font-size: 55px;
             font-family: monospace;
         }
         h2{
@@ -37,18 +37,17 @@
 <body>
     <h1 align="center">Blogging app</h1>
     <hr color="red" size="3px"> 
-    <h2>{{ post['title']}}</h2>
-    <p> {{  post['content'] }}</p>
+    <h2>{{ posts['title']}}</h2>
+    <p> {{  posts['content'] }}</p>
     <br>
     <br>
     <br>
     <br>
-    <br>
-    <p align="right"> By {{ post['author']}}</p>
+    <p align="right">By {{ posts['author']}}</p>
     <br>
     <hr color="white" size="4px">
     <br>
      <a href="{{ url_for('home_page')}}">Home page </a>
-    <br>
+
 </body>
 </html>

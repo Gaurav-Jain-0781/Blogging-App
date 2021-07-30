@@ -22,11 +22,11 @@
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-style: oblique;
             font-weight: bold;
-            color: rgba(23, 231, 16, 0.726);
+            color: rgba(4, 15, 3, 0.726);
             text-align: center;
         }
         a{
-            font-size: 200%;
+            font-size: 35px;
             color: crimson;
             font-family: monospace;
             font-weight: 500;
@@ -38,7 +38,7 @@
     <h1>{{ message }}</h1>
     <form action="/post/create" method="POST">
         <div>
-            <label for="title"><font size="6px">Title</font></label>
+            <label for="title"><font size="8px">Title</font></label>
             <input type="text" name="Title" height="200%" >
         </div>
         <br>
@@ -46,6 +46,12 @@
         <div class="content">
             <label for="content"><font size="10px">Content</font></label>
             <textarea name="content" cols="50px" rows="5px" ></textarea>
+        </div>
+        <br>
+        <br>
+        <div>
+            <label for="author"><font size="8px">Author</font></label>
+            <input type="text" name="author">
         </div>
         <br>
         <br>
@@ -62,11 +68,9 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
     <hr color="white" size="4px">
     <br>
-     <a href="{{ url_for('home_page')}}">Home page </a>
+    <a href="{{ url_for('home_page')}}">Home page </a>
+    <br>
 </body>
 </html>
