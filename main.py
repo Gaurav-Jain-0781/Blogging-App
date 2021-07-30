@@ -168,6 +168,3 @@ if __name__ == '__main__':
     create_blog_table()
     retrive_data()
     app.run(debug=True)
-
-
-
