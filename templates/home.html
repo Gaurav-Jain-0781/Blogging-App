@@ -16,6 +16,10 @@
     }
     h2{
         font-size: 300%;
+        font-size: 50px;
+    }
+    h2{
+        font-size: 45px;
         font-variant: small-caps ;
         font-family: forte;
         font-weight: bolder;
@@ -24,11 +28,12 @@
     li {
         color: rgb(212, 95, 48);
         font-size: 12px;
+        font-size: 20px;
         font-family: sans-serif;
         font-style: italic;
         }
     a{
-        font-size: 225%;
+        font-size: 35px;
         color: crimson;
         font-family: monospace;
         font-weight: 500;
@@ -55,14 +60,18 @@
     <br>
     <br>
     <br>
- 
+    <br>
     <br>
     <br>
     <br>
     <br>
     <hr color="white" size="3px">
     <br>
-    <a href="{{ url_for('create')}}">create new post</a>
+    <a href="{{ url_for('create')}}">Create New Post</a>
+    <br>
+    <br>
+    <a href="{{ url_for('update')}}">Update Post</a>
+    <br>
     {% endblock %}
 </body>
 </html>

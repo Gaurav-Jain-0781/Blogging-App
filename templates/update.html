@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update</title>
+    <style>
+        body{
+            background-color: #0000CD;
+        }
+        label{
+            color: #DD4124;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h1{
+            color: #A0DAA9;
+            font-style: italic;
+            font-family: cursive;
+        }
+        h2{
+            font-size: 40px;
+            color: #BA55D3;
+            font-family: monospace;
+            font-style: oblique;
+        }
+        a{
+            font-family: Verdana, Tahoma, sans-serif;
+            font-size: 30opx;
+            font-weight: 600;
+            color: chartreuse;
+            font-style: oblique;
+        }
+    </style>
+</head>
+<body> 
+    <h1 align="center">{{ message}}</h1>
+    <hr color="white" size="4px">
+    <h2> Provide the new and correct details :</h2>
+    <form action="/post/update_post" method="post">
+        <div>
+            <label for="Title"><font size="5px">Title</font></label>
+            <input type="text" name="Title" height="200%" >
+        </div>
+        <br>
+        <br>
+        <div>
+            <label for="Updated Title"><font size="5px">Updated Title</font></label>
+            <input type="text" name="Updated Title" height="200%" >
+        </div>
+        <br>
+        <br>
+        <div class="Updated Content">
+            <label for="Updated Content"><font size="8px">Updated Content</font></label>
+            <textarea name="Updated Content" cols="50px" rows="4px" ></textarea>
+        </div>
+        <br>
+        <br>
+        <div>
+            <label for="author"><font size="6px">Author</font></label>
+            <input type="text" name="author">
+        </div>
+        <br>
+        <br>
+        <br>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+    <br>
+    <br>
+    <hr color="red" size="4px">
+    <br>
+    <a href="{{url_for('home_page')}}">Home Page</a>
+</html>
